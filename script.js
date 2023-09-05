@@ -12,21 +12,21 @@
 const bankAccount = {
     accountNumber: "123",
     accountHolderName: "John Smith",
-    balance: 1000,
+    balance: 10,
 
-    deposit: function (money) {
-        this.balance = this.balance + money;
+    deposit: function (amount) {
+        amount > 60000
+            ? console.log("Требуется подтверждение легальности доходов")
+            : (this.balance += amount);
     },
 
-    withdraw: function (money) {
-        if (money > this.balance) {
-            return console.log(`Error , Balance =  ${this.balance}`);
-        } else {
-            this.balance = this.balance - money;
-        }
+    withdraw(amount) {
+        amount <= this.balance && amount > 0
+        ? this.balance -= amount
+        : console.log('Недостаточно средств на вашем балансе или вы ввели отрицательную сумму')
     },
-    checkBalance: function () {
-        return console.log(`Balance = ${this.balance}`);
+    checkBalance() {
+        return console.log(`Баланс вашего счёта равен: ${this.balance}`);
     },
 };
 
@@ -34,7 +34,7 @@ bankAccount.deposit(1000);
 bankAccount.checkBalance();
 bankAccount.withdraw(500);
 bankAccount.checkBalance();
-bankAccount.withdraw(2000);
+bankAccount.withdraw(100);
 bankAccount.checkBalance();
 bankAccount.withdraw(1450);
 bankAccount.checkBalance();
